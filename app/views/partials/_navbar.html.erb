@@ -23,6 +23,18 @@
       <!-- Search -->
       <div class='ml-auto mr-auto'>
       </div> 
+      <!-- Report -->
+      <div class="btn-group mr-3">
+        <button type="button" class="btn btn-outline-primary"><i class='fa fa-list-alt'></i> Report</button>
+        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        </button>
+        <div class="dropdown-menu">
+          <%= link_to '  All reports',report_path, class: 'fa fa-eye dropdown-item' %>
+          <% if current_user.profile && current_user.profile.id %>
+            <%= link_to '  My reports', report_user_path, class: 'fa fa-user dropdown-item'%>
+      <% end %>
+        </div>
+      </div>
       <!-- Profile Settings -->
       <!-- Dropdown -->
       <div class="btn-group">

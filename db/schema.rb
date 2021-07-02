@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_19_141354) do
+ActiveRecord::Schema.define(version: 2021_07_02_145030) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2019_11_19_141354) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.boolean "share", default: false
+    t.integer "avatar"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 

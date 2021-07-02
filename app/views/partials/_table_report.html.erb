@@ -1,0 +1,26 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Tasks (ID)</th>
+        <th scope="col">Comments</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @comments.each do |comment| %>
+        <% @tasks.each do |task| %>
+          <tr>
+            <% if comment.task_id == task.id%>
+              <td scope="row"><%= task.id%></td>
+              <td><%= comment.body %></td>
+              <td scope="row"><%= task.status%></td>
+            <% end %>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to 'Go Back', :back, class: 'btn btn-secondary col-2' %>
+</div>
+

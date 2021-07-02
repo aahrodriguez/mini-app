@@ -13,24 +13,13 @@
         <%= f.text_field :title, class: 'form-control mb-2', placeholder: 'Title'%>
       </div>
     </div>
-
     <br>
 
     <div class='row'>
       <p class='col-4'></p>
       <div class='col-4' align='center'>
         <%= f.label :description, 'Description'%>
-        <%= f.text_area :description, class: 'form-control mb-2', placeholder: 'Description', rows: '4'%>
-      </div>
-    </div>
-
-    <br>
-
-    <div class='row'>
-      <p class='col-4'></p>
-      <div class='col-4' align='center'>
-        <strong class='text-center'><%= f.label :status, 'Status:' %></strong>
-        <%= f.select(:status, [['Incomplete', 0.to_i], ['Complete', 10.to_i ]]) %>
+        <%= f.text_area :description, class: 'form-control mb-2', rows: '4'%>
       </div>
     </div>
 
@@ -56,13 +45,23 @@
 
     <br>
 
+     <div class='row'>
+      <p class='col-4'></p>
+      <div class='col-4' align='center'>
+        <strong class='text-center'><%= f.label :status, 'Status:' %></strong>
+        <%= f.select(:status, [['Incomplete', 0], ['Complete', 10 ]]) %>
+      </div>
+    </div>
+
+    <br>
+
     <div class='row'>
       <p class='col-4'></p>
       <div class='col-4' align='center'>
-        <%= f.hidden_field :user_id, value: params[:id]%>
-        <%= f.submit class: 'btn btn-primary col-4'%>
+        <%= f.submit class: 'btn btn-primary col-4', method: :put%>
         <%= link_to 'Go Back', :back, class: 'btn btn-secondary col-4' %>
       </div>
     </div>
+
   <% end %>
 </div>

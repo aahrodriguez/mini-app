@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :public?, except: %i[private_page]
+  before_action :find_profile, only: [:show, :edit, :update, :private_page, :change_privacy]
+  before_action :public, only: [:show, :edit]
  
   def show 
   end
@@ -27,7 +28,7 @@ class ProfilesController < ApplicationController
   def update
     if @profile.update(profile_params)
       flash[:notice] = 'Task Updated!'
-      redirect_to @profile
+      redirect_to profile_path(@profile), method: :put
     else
       render :edit
     end 
@@ -35,7 +36,7 @@ class ProfilesController < ApplicationController
 
   def change_privacy
     @profile.update(privacy_params)
-    redirect_to @profile
+    redirect_to profile_path(@profile)
   end
 
   def private_page 
@@ -44,6 +45,12 @@ class ProfilesController < ApplicationController
   private 
 
   def profile_params
+    params.require(:profile).permit(
+      :nickname,
+      :bio,
+      :user_id,
+      :avatar
+    )
   end 
 
   def privacy_params
@@ -54,10 +61,13 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
   end
 
-  def public?
-    unless (current_user.profile == @profile)
-      unless @profile.share
-        redirect_to private_page_profile_path(@profile)
+  def public
+    if current_user.profile
+      unless (current_user.profile.id == (params[:id]).to_i) # params[:id] it's a string
+        @profile = Profile.find(params[:id])
+        unless  @profile.share
+          redirect_to private_page_profile_path(@profile)
+        end
       end
     end
   end
