@@ -73,5 +73,5 @@ Caso tenha dúvidas, por gentileza entre em contato com a Equipe AutoSeg :)
 ### Observações
 - Não é necessário realizar o deploy do projeto no Heroku.
 - Crie um projeto em seu Github e suba o projeto lá após a finalização.
-- Não dê um fork / suba um PR em nosso repositório.
+- Não dê um fork / suba um PR em nosso repositório .
 
